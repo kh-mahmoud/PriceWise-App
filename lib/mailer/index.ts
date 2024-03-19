@@ -90,13 +90,12 @@ export async function generateEmailBody(
 }
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'generea055@gmail.com',
-        pass: process.env.GMAIL_ACCESS_PASSWORD
-    },
-    maxConnections: 1
-});
+        service: 'gmail',
+        auth: {
+           user: 'generea055@gmail.com',
+           pass: process.env.GMAIL_ACCESS_PASSWORD
+        }
+    });
 
 
 export const sendEmail = async (emailContent:EmailContent,email:string[]) => {

@@ -91,11 +91,16 @@ export async function generateEmailBody(
 
 const transporter = nodemailer.createTransport({
         service: 'gmail',
+        port: 587,
+        tls: {
+            ciphers: "SSLv3",
+            rejectUnauthorized: false,
+        },
         auth: {
            user: 'generea055@gmail.com',
            pass: process.env.GMAIL_ACCESS_PASSWORD
         }
-    });
+      });
 
 
 export const sendEmail = async (emailContent:EmailContent,email:string[]) => {

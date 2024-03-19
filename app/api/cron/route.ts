@@ -1,6 +1,6 @@
-import { ScrapAndStoreProduct } from "@/lib/actions"
 import { generateEmailBody, sendEmail } from "@/lib/mailer"
 import { prisma } from "@/lib/prismaClient"
+import { ScrapeAmazonProduct } from "@/lib/scraper"
 import { getAveragePrice, getEmailNotifType, getHighestPrice, getLowestPrice } from "@/lib/utils"
 import { User } from "@/types"
 import { revalidatePath } from "next/cache"
@@ -18,9 +18,9 @@ export const GET = async () => {
         if (!products) throw new Error("No products found")
 
         //scrap latest products details and update DB
-        const updateProduct = products.map(async (CurrentProduct:any) => {
+        const updateProduct = await Promise.all(products.map(async (CurrentProduct:any) => {
 
-            const scrapeProduct = await ScrapAndStoreProduct(CurrentProduct.url)
+            const scrapeProduct = await ScrapeAmazonProduct(CurrentProduct.url)
 
             if (!scrapeProduct) throw new Error("No product Found")
 
@@ -65,7 +65,7 @@ export const GET = async () => {
            }
 
            return updatedProduct
-        })
+        }))
 
         return NextResponse.json({message:"ok",data:updateProduct})
 

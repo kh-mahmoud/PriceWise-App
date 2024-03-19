@@ -89,13 +89,13 @@ export async function generateEmailBody(
     return { subject, body };
 }
 
-    const transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
            user: 'generea055@gmail.com',
            pass: process.env.GMAIL_ACCESS_PASSWORD
         }
-      });
+    });
 
 
 export const sendEmail = async (emailContent:EmailContent,email:string[]) => {
@@ -106,7 +106,7 @@ export const sendEmail = async (emailContent:EmailContent,email:string[]) => {
         html: emailContent.body
     };
 
-    const info = await transporter.sendMail(mailOptions, function (error, info) {
+    const info = transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
         } else {

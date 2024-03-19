@@ -121,10 +121,15 @@ const ProductDetails = async ({ params: { id } }: Props) => {
                                     </p>
                                 </div>
                             </div>
-                            {product.discount && 
+                             {product.discount && 
                               <p className="text-sm text-black opacity-50">
                                 <span className="text-primary-green font-semibold">{product.discount}%</span> off on this product.
-                              </p>}
+                             </p>}
+
+                              <p className="text-sm text-black opacity-50">
+                                <span className="text-primary-green font-semibold">{product.isavailable && "Available" }</span>
+                                <span className="text-primary font-semibold">{!product.isavailable && "Not Available" }</span>
+                             </p>
                         </div>
                     </div>
 

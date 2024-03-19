@@ -2,7 +2,7 @@ import { ScrapAndStoreProduct } from "@/lib/actions"
 import { generateEmailBody, sendEmail } from "@/lib/mailer"
 import { prisma } from "@/lib/prismaClient"
 import { getAveragePrice, getEmailNotifType, getHighestPrice, getLowestPrice } from "@/lib/utils"
-import { Product, User } from "@/types"
+import { User } from "@/types"
 import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 

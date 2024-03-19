@@ -6,7 +6,7 @@ import { prisma } from "../prismaClient"
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils"
 import { revalidatePath } from 'next/cache';
 import { generateEmailBody, sendEmail } from '../mailer';
-
+import axios from 'axios';
 
 export const ScrapAndStoreProduct=async(ProductUrl:string)=>{
    
@@ -133,7 +133,9 @@ export const addEmailToProduct= async(productId:string,email:string)=>
 
          const emailContent = await generateEmailBody(product,"WELCOME")
 
-         await sendEmail(emailContent,[email])
+         const data={emailContent,email:[email]}
+
+         await axios.post("http://localhost:3000/api/mailer",data) 
       }
 
     } catch (error) {

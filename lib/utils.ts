@@ -1,12 +1,11 @@
 import { PriceHistoryItem, Product } from "@/types";
 
 
-
 const Notification = {
-    WELCOME: 'WELCOME',
-    CHANGE_OF_STOCK: 'CHANGE_OF_STOCK',
-    LOWEST_PRICE: 'LOWEST_PRICE',
-    THRESHOLD_MET: 'THRESHOLD_MET',
+  WELCOME: 'WELCOME',
+  CHANGE_OF_STOCK: 'CHANGE_OF_STOCK',
+  LOWEST_PRICE: 'LOWEST_PRICE',
+  THRESHOLD_MET: 'THRESHOLD_MET',
 }
 
 const THRESHOLD_PERCENTAGE = 10;

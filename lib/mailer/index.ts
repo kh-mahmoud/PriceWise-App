@@ -90,9 +90,7 @@ export async function generateEmailBody(
 }
 
     const transporter = nodemailer.createTransport({
-        pool: true,
         service: 'gmail',
-        port: 2525,
         auth: {
            user: 'generea055@gmail.com',
            pass: process.env.GMAIL_ACCESS_PASSWORD

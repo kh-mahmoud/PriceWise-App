@@ -127,7 +127,7 @@ const Modal = ({ productId }: { productId: string }) => {
                                             className="dialog-btn"
                                             disabled={isSubmitting}
                                         >
-                                            {isSubmitting ? 'Submitting...' : 'Track'}
+                                            {isSubmitting ? 'Tracking...' : 'Track'}
                                         </button>
                                     </form>
                                 </Dialog.Panel>

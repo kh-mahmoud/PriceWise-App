@@ -133,9 +133,7 @@ export const addEmailToProduct= async(productId:string,email:string)=>
 
          const emailContent = await generateEmailBody(product,"WELCOME")
 
-         const data={emailContent,email:[email]}
-
-         await axios.post("http://localhost:3000/api/mailer",data) 
+         await sendEmail(emailContent,[email])
       }
 
     } catch (error) {

@@ -90,15 +90,17 @@ export async function generateEmailBody(
 }
 
 const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-           user: 'generea055@gmail.com',
-           pass: process.env.GMAIL_ACCESS_PASSWORD
-        }
-    });
+    service:'gmail',
+    auth: {
+        user: 'generea055@gmail.com',
+        pass: process.env.GMAIL_ACCESS_PASSWORD
+    },
+    secure: true,
+});
 
 
 export const sendEmail = async (emailContent:EmailContent,email:string[]) => {
+
     const mailOptions = {
         from: '"PriceWise"',
         to: email,
@@ -106,16 +108,29 @@ export const sendEmail = async (emailContent:EmailContent,email:string[]) => {
         html: emailContent.body
     };
 
-    const info = transporter.sendMail(mailOptions, function (error, info) {
+    await new Promise((resolve, reject) => {
+
+    // verify connection configuration
+    transporter.verify(function (error, success) {
         if (error) {
             console.log(error);
+            reject(error);
         } else {
-            console.log('Email sent: ' + info.response);
-            return info;
+            console.log("Server is ready to take our messages");
+            resolve(success);
         }
     });
+    });
+
+    await new Promise((resolve, reject) => {
+        // send mail
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                console.error(err);
+                reject(err);
+            } else {
+                resolve(info);
+            }
+        });
+    });
 }
-
-
-
-

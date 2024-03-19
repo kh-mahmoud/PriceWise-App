@@ -7,9 +7,10 @@ import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 
 
+export const maxDuration = 300 // set a custom timeout in seconds, maximum 5 minutes (300s)
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
-export const maxDuration = 10
+
 
 export const GET = async () => {
     try {
